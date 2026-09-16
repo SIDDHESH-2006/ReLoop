@@ -3,7 +3,19 @@
 -- Target: supabase/seed/seed.sql
 -- ==============================================================================
 
--- 1. DEMO PROFILES (Simulated Campus Students)
+-- 1. DEMO AUTH USERS
+-- These are placeholder rows used only to satisfy the profiles owner foreign
+-- keys. They are not login-capable accounts; create real users through
+-- Supabase Auth in the application or Dashboard.
+INSERT INTO auth.users (id, email, raw_user_meta_data)
+VALUES
+    ('a0000000-0000-0000-0000-000000000001', 'aarav.sharma@campus.edu', '{}'::JSONB),
+    ('a0000000-0000-0000-0000-000000000002', 'diya.patel@campus.edu', '{}'::JSONB),
+    ('a0000000-0000-0000-0000-000000000003', 'rohan.verma@campus.edu', '{}'::JSONB),
+    ('a0000000-0000-0000-0000-000000000004', 'ananya.iyer@campus.edu', '{}'::JSONB)
+ON CONFLICT (id) DO NOTHING;
+
+-- 2. DEMO PROFILES (Simulated Campus Students)
 -- Uses deterministic UUIDs so foreign keys align perfectly
 INSERT INTO public.profiles (id, email, full_name, hostel_block, room_number, eco_points, reputation_score)
 VALUES
